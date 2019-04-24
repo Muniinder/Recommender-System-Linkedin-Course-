@@ -1,0 +1,55 @@
+Top N recommender System Architechture:
+    
+  Individual Interest------------Candidate Generation-----------------Item Similarities
+                                          |
+                                          |
+                                   Candidate Ranking
+                                          |
+                                          |
+                                       Filtering
+   
+Train/test and cross validation measure
+Accuracy Metrics =  RMSE(Root Mean Square Error) = sqrt( summation((x-y)^2)/n )
+                    MAE(Mean Absolute Error) = summation(|y-x|)/n
+           
+Factors on which our system built : 
+    1. Hit Rate : number of hits on top n recommend / users
+        - leave one out 
+        - Avg Reciprocal Hit Rate ( ARHR )
+        - cummulative hit rating ( cHR ) : means setting a threshold 
+        - rating Hit rate ( rHR ) 
+    Coverage  : % of <user, item> pairs that can be predicted_________depends on hoe big or ssmmall is data
+        - how quickly new item will be add to user recommendation
+    Diversity : (1-S), S=avg similarity b/w recommendation pairs. It measueres how much recommendation data is different from each other.
+    Novelty   : How much data is popular, mean popular rank of recommended items
+        - concept of user trust by suggesting similar items to user
+    Churn     : measure of  how often do recommendations change
+    Responsiveness : how quickly does new user user behaviour influence your recommendations
+    A/B tests (most significant one most of the time) : To test on real world, by recommending and then analysing data based on user click and with our prediction.
+   
+Recommended Engine Architecture :
+  Surpriselib Algorithm : 
+                     AlgoBase  ( Base class )
+                              |
+           SVD-----KNNBasic-------SCDpp-----Custom
+  We are building on top of surpriselib algo:
+    We make our custom class, with our defined function
+    Class MyOwnAlgorithm:
+      def __init__(AlgoBase):
+        AlgoBase.__init__(self)
+      def estimate(self, user, item):
+        //  
+        //
+    Class EvaluatedAlgorithm(AlgoBase)  and Class Evaluator(DataSet)
+      - evaluating all above factors          - train, test data
+      
+    More great and good to do is:
+          Class Evaluator(DataSet)
+            AddAlgorithm (algorithm)
+            Evaluate()
+
+            dataset = EvaluatedDataset
+            algorithms = Evaluated Algorithms
+
+        
+  
