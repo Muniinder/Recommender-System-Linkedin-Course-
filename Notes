@@ -51,5 +51,103 @@ Recommended Engine Architecture :
             dataset = EvaluatedDataset
             algorithms = Evaluated Algorithms
 
+CONTENT BASAED FILTERING ---------------------------------------------------------------------------
+    1. Based on Movies Data
+        How to measure similarity......................?
+        On which factors we should measure similarity..........?
+        maybe their genres, or their release year or you say...?
+        Ans: Cosine Similarity
+            Try measure the similarity of two things first
+            Scale it up
+            Cos(x,y) = summation(xy)/sqrt(summation(x))*sqrt(summation(x^2)*summation(y^2))
+            
+COLLABORATIVE BASED FILTERING-------------------------------------------------------------------------
+    1. How to find people like you, who have same interest like you.......................
+        Problem arises when we try to find with similarity...............
+        guess how you can do it..............
+        yes.....
+        -   cosine similarity
+        BIG CHALLENGE is sparsity of data, i.e. we can not generate cosine similarity when we have limited data.............think about
+        how you trackle this problem in content based filtering, there is a matrix with uers on rows and movies on coloumns 
+        so if the most of the (row,col) is empty then cosine similarity will not work , because not most of the person sees a particualar 
+        movies
+        so we'll use adjusted cosine similarity
         
-  
+        -   We can also use MSD (Mean squared difference)
+                i.e. look out if two people rated the same movies and then take the difference
+                    MSD (x, y) = summation (x-y)^2/ I   , I = no. of items users ahve in common
+              
+                    MSDsim (x,y) = 1 / (MSD + 1)
+                easier to use then cosine metric
+                
+        -   Jaccard similarity
+                based on union 
+                how many two users have common and diviing it by total items 
+                they are used if someone just bought, and they did n't rate it
+                
+    Results:    Cosine similarity is always used in most of cases
+   
+ USER BASED FILTERING: 
+    - get data of users
+    - make a 2d array of users and movies, think in terms of vector ( USER MOVIES )
+    - make another 2d matrix of users vs users , if is two different users watched and rated it, then 1 else 0 ( USER USER )
+    - see, see closely , val 1 for above also means they both hated it rather than loved it 
+    - so we want to normalise the rating as if 5 star rating means 1.0 and so on, ( CANDIDATE SCORING)
+    - Sort the candidates
+    - Then remove the movies which user already has seen it
+    
+    
+    oficial steps:
+    - user-> item rating matrix
+    - user-> user similarity matrix
+    - look up similar users
+    - candidate generation
+    - candidate scoring
+    - candidate filtering
+   
+   
+   
+   
+   
+   
+   
+   MODEL BASED PREDICTIONS: 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+                
+        
+           
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
